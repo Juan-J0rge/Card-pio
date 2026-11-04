@@ -1,100 +1,146 @@
-🍽️ Cardápio
+<div align="center">
 
-Aplicação full stack de cardápio digital. Permite cadastrar pratos (nome, preço e imagem) e listá-los em cards na tela.
+# 🍽️ Cardápio
 
-Projeto de estudo feito acompanhando o conteúdo do canal da Fernanda Kipper.
+**Aplicação full stack para cadastrar e exibir pratos de um cardápio digital.**
 
-Sumário
-Tecnologias
-Estrutura do projeto
-Como rodar localmente
-API
-Melhorias futuras
-Tecnologias
+![Java](https://img.shields.io/badge/Java-21-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![Spring Boot](https://img.shields.io/badge/Spring_Boot-4-6DB33F?style=for-the-badge&logo=springboot&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white)
+<br>
+![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 
-Back-end
+<sub>Projeto de estudo feito acompanhando o conteúdo do canal da Fernanda Kipper.</sub>
 
-Java 21
-Spring Boot 4 (Web MVC + Spring Data JPA)
-PostgreSQL
-Lombok
-Maven
+</div>
 
-Front-end
+---
 
-React 19 + TypeScript
-Vite
-TanStack React Query
-Axios
-Estrutura do projeto
+## 📋 Sumário
+
+- [Sobre](#-sobre)
+- [Tecnologias](#-tecnologias)
+- [Estrutura do projeto](#-estrutura-do-projeto)
+- [Como rodar localmente](#-como-rodar-localmente)
+- [API](#-api)
+- [Melhorias futuras](#-melhorias-futuras)
+
+---
+
+## 💡 Sobre
+
+O **Cardápio** permite cadastrar pratos informando **nome**, **preço** e **imagem**, e exibe todos eles em uma grade de cards.
+
+- ➕ Cadastro de pratos por um modal
+- 🖼️ Listagem em cards com imagem, nome e preço
+- 🔄 Lista atualizada automaticamente após cada cadastro
+
+---
+
+## 🛠️ Tecnologias
+
+| Camada | Tecnologias |
+|:--|:--|
+| **Back-end** | Java 21 · Spring Boot 4 · Spring Data JPA · Lombok · Maven |
+| **Banco de dados** | PostgreSQL |
+| **Front-end** | React 19 · TypeScript · Vite · TanStack React Query · Axios |
+
+---
+
+## 📁 Estrutura do projeto
+
+```text
 .
-├── cardapio/                  # Back-end (Spring Boot)
+├── cardapio/                      # 🟢 Back-end (Spring Boot)
 │   └── src/main/java/com/Juan_J0rge/cardapio/
-│       ├── controller/        # FoodController (endpoints REST)
-│       ├── Entity/            # Food (entidade JPA)
-│       ├── Repository/        # FoodRepository
-│       └── dto/               # FoodRequestDTO / FoodResponseDTO
+│       ├── controller/            #    Endpoints REST (FoodController)
+│       ├── Entity/                #    Entidade JPA (Food)
+│       ├── Repository/            #    Acesso ao banco (FoodRepository)
+│       └── dto/                   #    FoodRequestDTO e FoodResponseDTO
 │
 └── front/
-    └── cardapio/              # Front-end (React + Vite)
+    └── cardapio/                  # 🔵 Front-end (React + Vite)
         └── src/
-            ├── components/    # card e create-modal
-            ├── hooks/         # useFoodData e useFoodDataMutate
-            └── interface/     # FoodData
-Como rodar localmente
-Pré-requisitos
-JDK 21
-Node.js (versão LTS) e npm
-PostgreSQL
-1. Banco de dados
+            ├── components/        #    card e create-modal
+            ├── hooks/             #    useFoodData e useFoodDataMutate
+            └── interface/         #    Tipo FoodData
+```
 
-Crie um banco chamado food no PostgreSQL:
+---
 
-sql
+## 🚀 Como rodar localmente
+
+### ✅ Pré-requisitos
+
+- [JDK 21](https://adoptium.net/)
+- [Node.js](https://nodejs.org/) (versão LTS) e npm
+- [PostgreSQL](https://www.postgresql.org/)
+
+### 1️⃣ Banco de dados
+
+Crie um banco chamado `food`:
+
+```sql
 CREATE DATABASE food;
+```
 
-O back-end usa, por padrão, o usuário postgres na porta 5432. Se o seu usuário ou senha forem diferentes, ajuste em cardapio/src/main/resources/application.properties. A tabela food é criada automaticamente (spring.jpa.hibernate.ddl-auto=update).
+> [!NOTE]
+> Por padrão o back-end usa o usuário `postgres` na porta `5432`. Se o seu for diferente, ajuste em `cardapio/src/main/resources/application.properties`.
+> A tabela `food` é criada automaticamente.
 
-2. Back-end
-bash
+### 2️⃣ Back-end
+
+```bash
 cd cardapio
 ./mvnw spring-boot:run
+```
 
-No Windows: mvnw.cmd spring-boot:run.
+> No Windows: `mvnw.cmd spring-boot:run`
 
-A API sobe em http://localhost:8080.
+A API fica disponível em **http://localhost:8080**
 
-3. Front-end
+### 3️⃣ Front-end
 
 Em outro terminal:
 
-bash
+```bash
 cd front/cardapio
 npm install
 npm run dev
+```
 
-O Vite mostra no terminal o endereço do front (normalmente http://localhost:5173).
+O Vite mostra o endereço no terminal, normalmente **http://localhost:5173**
 
-API
+---
 
-URL base: http://localhost:8080
+## 🔌 API
 
-Método	Rota	Descrição
-GET	/food/listfood	Lista todos os pratos
-POST	/food	Cadastra um novo prato
+**URL base:** `http://localhost:8080`
 
-Exemplo de corpo do POST /food:
+| Método | Rota | Descrição |
+|:--:|:--|:--|
+| ![GET](https://img.shields.io/badge/GET-2EA44F?style=flat-square) | `/food/listfood` | Lista todos os pratos |
+| ![POST](https://img.shields.io/badge/POST-0969DA?style=flat-square) | `/food` | Cadastra um novo prato |
 
-json
+<details>
+<summary><b>📤 Exemplo de corpo do <code>POST /food</code></b></summary>
+
+```json
 {
   "title": "Pizza de calabresa",
   "price": 45,
   "image": "https://exemplo.com/pizza.jpg"
 }
+```
 
-Exemplo de resposta do GET /food/listfood:
+</details>
 
-json
+<details>
+<summary><b>📥 Exemplo de resposta do <code>GET /food/listfood</code></b></summary>
+
+```json
 [
   {
     "id": 1,
@@ -103,9 +149,24 @@ json
     "price": 45
   }
 ]
-Melhorias futuras
- Editar e excluir pratos (PUT e DELETE)
- Validação dos campos no back-end e no front-end
- Restringir o CORS ao domínio do front
- Mover credenciais do banco para variáveis de ambiente
- Fazer o deploy (Vercel + Render + Neon)
+```
+
+</details>
+
+---
+
+## 🔮 Melhorias futuras
+
+- [ ] Editar e excluir pratos (`PUT` e `DELETE`)
+- [ ] Validação dos campos no back-end e no front-end
+- [ ] Restringir o CORS ao domínio do front
+- [ ] Mover credenciais do banco para variáveis de ambiente
+- [ ] Fazer o deploy (Vercel + Render + Neon)
+
+---
+
+<div align="center">
+
+Feito com ☕ e muito estudo.
+
+</div>
